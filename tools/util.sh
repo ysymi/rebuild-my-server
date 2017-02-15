@@ -2,17 +2,16 @@
 
 function get_os()
 {
-    platform=`python -mplatform`
-    if [ `echo 
-    case "$platform" in
+    os=`uname`
+    case "$os" in
         "Darwin")
-            return darwin
+            echo darwin
             ;;
         "Linux")
-            [[ `python -mplatform | grep -o Ubuntu` = "Ubuntu" ]] && return ubuntu
+            [[ `python -mplatform | grep -o Ubuntu` = "Ubuntu" ]] && echo ubuntu
             ;;
         *)
-            return unknown
+            echo unknown
     esac
 }
 

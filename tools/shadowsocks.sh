@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-
-
 wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 pip install shadowsocks
@@ -9,7 +7,7 @@ pip install shadowsocks
 public_ip=`curl ipinfo.io/ip`
 cat > /etc/shadowsocks.json << EOF
 {
-    "server": "181.215.89.113",
+    "server": "${public_ip}",
     "port_password": {
         "10001": "passwd1",
         "10002": "passwd2",
@@ -19,4 +17,5 @@ cat > /etc/shadowsocks.json << EOF
     "method": "aes-256-cfb"
 }
 EOF
-    ssserver -c /etc/shadowsocks.json -d start
+
+ssserver -c /etc/shadowsocks.json -d start
