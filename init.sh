@@ -1,6 +1,19 @@
+#!/usr/bin/env bash
 
 function modify_sshd {
+
+    sed -i 's/^GSSAPI/#GSSAPI/g' /etc/ssh/sshd_config
+
+    sed -i '/PasswordAuthentication/d' /etc/ssh/sshd_config
+    sed -i '/PubkeyAuthentication/d' /etc/ssh/sshd_config
+    sed -i '/RSAAuthentication/d' /etc/ssh/sshd_config
+    sed -i '/UseDNS/d' /etc/ssh/sshd_config
+
+    echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config
+    echo 'PubkeyAuthentication yes' >> /etc/ssh/sshd_config
+    echo 'RSAAuthentication yes' >> /etc/ssh/sshd_config
     echo 'UseDNS no' >> /etc/ssh/sshd_config
+
     service ssh restart
 }
 
