@@ -2,6 +2,7 @@
 
 function modify_sshd {
 
+    sed -i 's/Port 22/Port 22789/' /etc/ssh/sshd_config
     sed -i 's/^GSSAPI/#GSSAPI/g' /etc/ssh/sshd_config
 
     sed -i '/PasswordAuthentication/d' /etc/ssh/sshd_config
