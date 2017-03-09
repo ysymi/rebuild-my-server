@@ -6,3 +6,6 @@ Bundle 'Valloric/YouCompleteMe'
 call vundle#end()
 
 
+nmap <space> :
+vmap <space> :
+let mapleader = ";"
