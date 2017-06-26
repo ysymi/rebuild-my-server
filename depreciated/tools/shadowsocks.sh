@@ -5,6 +5,8 @@ python get-pip.py
 pip install shadowsocks
 
 public_ip=`curl ipinfo.io/ip`
+#curl ipinfo.io/ip
+#curl ip.gs
 cat > /etc/shadowsocks.json << EOF
 {
     "server": "${public_ip}",

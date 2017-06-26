@@ -1,0 +1,27 @@
+---
+# install basic service
+
+- name: update sshd config
+  script: scripts/update_sshd.sh
+  notify:
+    - restart ssh
+
+- name: install nginx with update
+  apt:
+    name: nginx
+    update_cache: yes
+
+- name: generate nginx conf
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: "nginx/ffun.in.conf" , dest: "/etc/nginx/conf.d/ffun.in.conf" }
+    - { src: "nginx/gift.ffun.in.conf" , dest: "/etc/nginx/conf.d/gift.ffun.in.conf" }
+
+- name: make ffun.in log directroy
+  file:
+    path: /var/log/ffun.in
+    state: directory
+  notify:
+    - restart nginx

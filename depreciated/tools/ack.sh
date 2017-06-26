@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. ./util.sh
+. util.sh
 
 
 case "$os" in
